@@ -11,15 +11,15 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, int level, vector<int>& v){
+    void f(TreeNode* root, vector<int>& res, int level){
         if(root==NULL) return;
-        if(v.size()==level) v.push_back(root->val);
-        helper(root->right,level+1,v);
-        helper(root->left,level+1,v);
+        if(res.size()==level) res.push_back(root->val);
+        f(root->right, res, level+1);
+        f(root->left, res, level+1);
     }
     vector<int> rightSideView(TreeNode* root) {
-        vector<int> v;
-        helper(root,0,v);
-        return v;
+        vector<int> res;
+        f(root, res, 0);
+        return res;
     }
 };
